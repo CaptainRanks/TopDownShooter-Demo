@@ -1,0 +1,48 @@
+﻿Star Wars: Special Agents (Level 1 Draft)
+
+
+1. Introduction        1
+2. Core Concept        1
+1. Introduction
+
+
+This document will serve as a guide for a single level of our game “Star Wars: Special Agents”. This game is a shooter game that has the player leading the mission with a few teammates who are AI. Their mission is to complete the objectives for the mission to be successful and the level complete. 
+2. Core Concept
+   1. Gameplay Loop
+
+
+This game will involve shooting, teamwork, and completing objectives. For this level, we will keep it simple, the player will have a single AI teammate who by default will follow the player everywhere they go.
+
+
+The player will have the ability to give commands to the AI teammate such as the following:
+* Follow / Hold Position
+* Fire at Will / Hold Fire
+* Cover Area / Position
+
+
+The commands to the AI will take time, so there will be a separate menu from the pause menu called the “Command Menu” that pauses the game to allow the player to give commands. Once the commands are given, the game automatically resumes. 
+
+
+The shooting portion will be simple, every character will have the same weapon, shooting 1 shot every 0.5 seconds. The player can either click or hold the trigger button, but the fire rate will not change.
+
+
+The objective in level 1 is simple, take out all the enemies and capture a map.
+
+
+   2. Win/Loss Conditions
+
+
+The winning condition is straightforward, complete the objective of level 1, destroy all enemies and capture the map.
+
+
+The losing condition is the player and their teammate dying. Every character has 3 lives, each shot takes 1 life. 3 shots and you are dead
+
+
+   3. Environment
+
+
+For now, the environment will be kept simple, image a building with one floor and many rooms. Not special theme is needed for now as this is a demonstration of the idea.
+
+
+   4. Enemies
+   5. The enemies will all be patrolling different rooms. If they notice the player and their teammate, they will start shooting at them. If they notice both the player and teammate, they will aim for whoever is closest to them.
