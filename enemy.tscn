@@ -9,7 +9,7 @@ resource_local_to_scene = true
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bnm3a"]
 size = Vector2(100, 100)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["damage"]]
 script = ExtResource("1_mc75v")
 bullet_scene = ExtResource("2_qllnk")
 metadata/_edit_lock_ = true

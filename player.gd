@@ -5,23 +5,23 @@ extends CharacterBody2D
 @export var zoom_speed: float = 0.1  # Speed of zooming
 @export var min_zoom: float = 0.25  # Smaller value zooms out more
 @export var max_zoom: float = 1.0  # Default value, cannot zoom in more than original shot
-@export var lives: int = 3  # Player starts with 3 lives
+#@export var lives: int = 3  # Player starts with 3 lives
 
 var camera: Camera2D
 var muzzle: Marker2D # Used to be Position2D
 var hud: CanvasLayer
+var hit_count: int = 0
 
 func _ready():
 	camera = $Camera2D  # Finds the Camera2D node
 	muzzle = $Muzzle  # Reference the Muzzle (Marker2D) node
 	add_to_group("player")  # Ensure player is in "damage" group
-	hud = get_parent().get_node("HUD")  # Get the HUD node
+	hud = get_tree().get_root().get_node("Main/HUD")  # Adjust "Main" to your actual root node name
 
 func _process(_delta):
 	var direction = Vector2.ZERO  # Default no movement
 	var mouse_position = get_global_mouse_position()  # Mouse position in world coordinates
 	rotation = (mouse_position - global_position).angle()  # Rotate player to face mouse
-
 
 	# Check for movement inputs
 	if Input.is_action_pressed("ui_up"):
@@ -66,11 +66,9 @@ func shoot():
 	# Calculate direction from player to mouse
 	bullet.direction = (mouse_position - position).normalized()
 	get_parent().add_child(bullet) 
-	
-func _on_body_entered(body):
-	if body.is_in_group("damage") and body.name == "EnemyBullet":
-		body.queue_free()  # Destroy the enemy's bullet
-		lives -= 1  # Reduce player lives
-		#hud.get_node("PlayerLivesLabel").text = "Player Lives: %d" % lives
-		hud.get_node("PlayerLivesLabel").text = "Player Lives: %d" % lives  # Update HUD
-		print("Collision detected with:", body.name)
+
+func increment_hit_count():
+	hit_count += 1  # Increment the hit counter
+	#print("Player hit! Total hits:", hit_count)  # Debugging
+	if hud:
+		hud.update_player_lives(hit_count)  # Update the HUD

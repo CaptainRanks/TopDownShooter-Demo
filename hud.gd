@@ -1,6 +1,7 @@
 extends CanvasLayer
 
-# Updates the lives displayed on the HUD
-func update_lives(player_lives: int, enemy_lives: int):
-	$PlayerLivesLabel.text = "Player Lives: %d" % player_lives
-	$EnemyLivesLabel.text = "Enemy Lives: %d" % enemy_lives
+func update_player_lives(player_lives: int):
+	$PlayerLivesLabel.text = "Enemy Points: %d" % player_lives
+
+func update_enemy_hits(enemy_hits: int):
+	$"EnemyLivesLabel".text = "Player Points: %d" % enemy_hits

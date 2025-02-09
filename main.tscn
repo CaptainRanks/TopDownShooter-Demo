@@ -1,13 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://bj50kp6wyxf7t"]
+[gd_scene load_steps=4 format=3 uid="uid://bj50kp6wyxf7t"]
 
 [ext_resource type="PackedScene" uid="uid://d3s1y0nqn7hij" path="res://player.tscn" id="1_hd0ma"]
 [ext_resource type="PackedScene" uid="uid://dfchjfcehro4b" path="res://enemy.tscn" id="2_6xv6u"]
+[ext_resource type="Script" path="res://hud.gd" id="3_0ylsu"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_hd0ma")]
-position = Vector2(198, 213)
+position = Vector2(65, 330)
 
 [node name="Enemy" parent="." instance=ExtResource("2_6xv6u")]
-position = Vector2(679, 349)
+position = Vector2(1097, 353)
 shoot_interval = 0.5
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("3_0ylsu")
+
+[node name="PlayerLivesLabel" type="Label" parent="HUD"]
+offset_left = 284.0
+offset_top = 1.0
+offset_right = 390.0
+offset_bottom = 24.0
+text = "Enemy Points:"
+
+[node name="EnemyLivesLabel" type="Label" parent="HUD"]
+offset_left = -2.0
+offset_right = 108.0
+offset_bottom = 23.0
+text = "Player Points:"

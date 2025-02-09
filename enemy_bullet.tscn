@@ -9,6 +9,7 @@ size = Vector2(6, 6)
 
 [node name="enemy_bullet" type="Area2D"]
 modulate = Color(1, 0, 0, 1)
+collision_layer = 2
 script = ExtResource("1_td23p")
 metadata/_edit_lock_ = true
 
