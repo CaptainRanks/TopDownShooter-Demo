@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfchjfcehro4b"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_mc75v"]
+[ext_resource type="PackedScene" uid="uid://ib1fjhoe47e6" path="res://bullet.tscn" id="2_t2lqw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_iaobq"]
+resource_local_to_scene = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bnm3a"]
+size = Vector2(100, 100)
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_mc75v")
+bullet_scene = ExtResource("2_t2lqw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.0901961, 1, 1, 1)
+position = Vector2(0, -4.76837e-07)
+scale = Vector2(100, 99.959)
+texture = SubResource("PlaceholderTexture2D_iaobq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bnm3a")
