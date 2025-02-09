@@ -1,24 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://ib1fjhoe47e6"]
+[gd_scene load_steps=4 format=3 uid="uid://k1qsimmqnd6x"]
 
-[ext_resource type="Script" path="res://bullet.gd" id="1_higuj"]
+[ext_resource type="Script" path="res://enemy_bullet.gd" id="1_td23p"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v6rd3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xy407"]
 size = Vector2(6, 6)
 
-[node name="Bullet" type="Area2D"]
-modulate = Color(0.611765, 0, 0.823529, 1)
-script = ExtResource("1_higuj")
+[node name="enemy_bullet" type="Area2D"]
+modulate = Color(1, 0, 0, 1)
+script = ExtResource("1_td23p")
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1.19209e-07, 2.38419e-07)
+position = Vector2(1.78814e-07, 5.96046e-08)
 scale = Vector2(6, 6)
 texture = SubResource("PlaceholderTexture2D_v6rd3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-modulate = Color(0.00392157, 0.984314, 0.00392157, 1)
+modulate = Color(0.956863, 0, 0.270588, 1)
 shape = SubResource("RectangleShape2D_xy407")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -20,3 +20,6 @@ texture = SubResource("PlaceholderTexture2D_u5yoc")
 shape = SubResource("RectangleShape2D_anxtu")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Muzzle" type="Marker2D" parent="." groups=["damage"]]
+position = Vector2(51, 0)

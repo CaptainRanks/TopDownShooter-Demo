@@ -3,16 +3,22 @@ extends CharacterBody2D
 @export var speed: float = 50.0  # Movement speed
 @export var bullet_scene: PackedScene  # Reference to the enemy's bullet scene
 @export var shoot_interval: float = 2.0  # Time between shots
+@export var lives: int = 3  # Enemy starts with 3 lives
+
 
 var shoot_timer: float = 0.0  # Internal timer
 var player: Node2D  # Reference to the player node
+var muzzle: Marker2D  # Reference to the enemy's firing point
 
 func _ready():
 	# Find the player in the scene
 	player = get_parent().get_node("Player")  # Adjust the path if necessary
+	muzzle = $Muzzle  # Reference the Muzzle (Marker2D) node
+	add_to_group("enemy")  # Ensure player is in "damage" group
 
 func _process(delta):
 	follow_player(delta)  # Make the enemy follow the player
+	rotation = (player.global_position - global_position).angle()
 	shoot_timer += delta
 	if shoot_timer >= shoot_interval:
 		shoot()
@@ -21,7 +27,7 @@ func _process(delta):
 func follow_player(_delta):
 	if player == null:
 		return  # No player to follow
-		# Calculate direction to the player
+		# Calculate direction to the playerss
 	var direction_to_player = (player.position - position).normalized()
 	# Set velocity to move toward the player
 	velocity = direction_to_player * speed
@@ -33,12 +39,7 @@ func shoot():
 		return
 		
 	var bullet = bullet_scene.instantiate()
-	bullet.position = position  # Enemy's current position
-	bullet.direction = (player.position - position).normalized()  # Shoot toward the player
+	bullet.position = muzzle.global_position  # Spawn bullet from Muzzle node
+	bullet.direction = (player.global_position - bullet.position).normalized()  # Aim at the player
 	get_parent().add_child(bullet)  # Add to the game world
-
-
-func _on_body_entered(body):
-	if body.name == "PlayerBullet":  # Assuming your player's bullet is named PlayerBullet
-		queue_free()  # Destroy enemy
-		body.queue_free()  # Destroy the bullet
+	
